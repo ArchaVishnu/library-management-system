@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "lms",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
