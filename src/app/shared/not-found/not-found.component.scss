@@ -1,0 +1,58 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100%;
+    text-align: center;
+}
+.not-found-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 24px;
+
+    .content {
+        max-width: 500px;
+
+        .error-icon {
+            font-size: 120px;
+            width: 120px;
+            height: 120px;
+            color: #A3AED0; // Soft gray from your dashboard
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 80px;
+            font-weight: 800;
+            margin: 0;
+            color: #1A1C23; // Navy brand color
+            line-height: 1;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #1B2559;
+            margin: 16px 0;
+        }
+
+        p {
+            color: #5f6368;
+            font-size: 16px;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            color: #1E88E5 !important;
+            padding: 8px 24px;
+            border-radius: 12px; 
+        }
+    }
+}
