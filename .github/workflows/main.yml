@@ -1,0 +1,33 @@
+name: Build and Deploy Angular App
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use your preferred Node version
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Build
+        # Update <app-name> with your project name from angular.json
+        run: npm run build -- --configuration production --base-href /library-management-system/
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist/library-management-system/browser # Path for Angular 17+ (check your angular.json)
+          branch: gh-pages # Branch to deploy to
