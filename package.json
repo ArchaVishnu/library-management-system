@@ -1,0 +1,21 @@
+{
+  "name": "library-management-system",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/ArchaVishnu/library-management-system#readme",
+  "bugs": {
+    "url": "https://github.com/ArchaVishnu/library-management-system/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArchaVishnu/library-management-system.git"
+  },
+  "license": "ISC",
+  "author": "Archa Mohan",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start:frontend": "cd frontend && ng serve",
+    "start:backend": "cd fake-backend && npm start"
+  }
+}
