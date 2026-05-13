@@ -1,0 +1,29 @@
+<mat-sidenav-container class="app-container">
+
+    <mat-sidenav mode="side" opened class="main-nav">
+        <div class="nav-branding">
+            <mat-icon>Local Library</mat-icon>
+            <div class="brand-text">
+                <span class="title">Library System</span>
+                <span class="subtitle">Management Portal</span>
+            </div>
+        </div>
+
+        <div class="nav-button-list">
+            @for (item of navItems; track $index) {
+            <a mat-flat-button [routerLink]="item.link" routerLinkActive="active-btn" class="sidebar-btn">
+                <mat-icon>{{ item.icon }}</mat-icon>
+                {{ item.label }}
+            </a>
+            }
+        </div>
+        <div class="nav-footer">
+            <p>© 2026 Library System</p>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content-area">
+        <ng-content></ng-content>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
