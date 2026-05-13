@@ -1,14 +1,12 @@
 {
-  "name": "library-management-system",
+  "name": "library-management-system-angular-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start:frontend": " ng serve",
-    "start:backend": "cd fake-backend && npm start",
-    "start": "ng serve && cd fake-backend && npm start"
+    "start": "ng serve"
   },
   "private": true,
   "dependencies": {

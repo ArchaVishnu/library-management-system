@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "librarian@lms.com",
+      "password": "123456",
+      "name":"Librarian",
+      "role": "librarian"
+    },
+    {
+      "id": 2,
+      "email": "student@lms.com",
+      "name":"Student A",
+      "password": "123456",
+      "role": "student"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "Clean Code",
+      "author": "Robert C Martin",
+      "status": "Available",
+      "isbn":"any"
+      
+
+    },
+    {
+      "id": 2,
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "status": "Issued",
+      "isbn":"any"
+
+    }
+  ],
+  "borrowHistory": [],
+  "reservations": [
+    {"book":"1","queueNumber":2},
+    {"book":"2","queueNumber":2}
+
+  ],
+  "systemState": [{ "id": "userTracker", "lastSequence": 0 },{"id":"booksTracker", "lastSequence":0}]
+}
