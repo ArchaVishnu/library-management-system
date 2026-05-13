@@ -51,7 +51,7 @@ app.use((req, res, next) => {
     delete req.body.userClass;
   }
 
-  if (req.method === "POST" && req.url === "/register-book") {
+  if (req.method === "POST" && req.url === "/add-book") {
     const db = app.db;
     const systemState = db.get("systemState").value() || [];
 
