@@ -1,147 +1,115 @@
 import { HttpResponse, HttpParams, HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { BookQueryOptions, Book, BorrowHistory, Reservation } from '../models/book';
-import { BookStatus } from '../models/book.model';
+import { Injectable, inject } from '@angular/core';
+import { Observable, concatMap, map } from 'rxjs';
+import {
+  BookQueryOptions,
+  Book,
+  BorrowHistory,
+  Reservation,
+  BookStatus,
+  AddBooksModel,
+  BorrowBookRequest,
+  ReturnBookRequest,
+  ReserveBookRequest,
+} from '../models/book.model';
+import { APP_ENVIRONMENT } from '../tokens/env.tokens';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
-  constructor(private http:HttpClient){}
+  private readonly http = inject(HttpClient);
+  private readonly env = inject(APP_ENVIRONMENT);
+  private readonly baseUrl = this.env.apiBaseUrl;
 
-  private readonly baseUrl = 'http://localhost:3000';
+  /**
+   * Fetches paginated and filtered book entries complete with response metadata headers
+   */
   public getBooks(
     options: BookQueryOptions = {},
   ): Observable<HttpResponse<Book[]>> {
     let params = new HttpParams();
-
     if (options.page) params = params.set('_page', String(options.page));
     if (options.limit) params = params.set('_limit', String(options.limit));
     if (options.search) params = params.set('q', options.search);
     if (options.status) params = params.set('status', options.status);
 
     return this.http.get<Book[]>(`${this.baseUrl}/books`, {
-      headers: this.getAuthHeaders(),
       params,
-      observe: 'response', // Required to extract X-Total-Count metadata headers safely
+      observe: 'response', // Cleanly preserves headers like X-Total-Count
     });
-  }
-  getAuthHeaders(): import("@angular/common/http").HttpHeaders | Record<string, string | string[]> | undefined {
-    throw new Error('Method not implemented.');
   }
 
   /**
-   * 3. Operational Transactions (Issue, Reserve, and Return)
+   * Registers a new book asset profile in the library database
    */
-  public addBook(
-    title: string,
-    author: string,
-    isbn: string = 'any',
-  ): Observable<Book> {
-    const body = { title, author, isbn, status: 'Available' as BookStatus };
-    return this.http.post<Book>(`${this.baseUrl}/book`, body, {
-      headers: this.getAuthHeaders(),
-    });
-  }
-
-  public borrowBook(userId: string, bookId: number): Observable<BorrowHistory> {
-    // Pipeline Chain Part A: Flip book status to Issued
-    return this.http
-      .patch<Book>(
-        `${this.baseUrl}/books/${bookId}`,
-        { status: 'Issued' as BookStatus },
-        { headers: this.getAuthHeaders() },
-      )
-      .pipe(
-        tap(() => {}),
-        // Pipeline Chain Part B: Log into the History ledger
-        tap({
-          next: () => {
-            const logPayload = {
-              userId,
-              bookId,
-              borrowDate: new Date().toISOString().split('T')[0],
-              returnDate: null,
-            };
-            return this.http.post<BorrowHistory>(
-              `${this.baseUrl}/borrowHistory`,
-              logPayload,
-              { headers: this.getAuthHeaders() },
-            );
-          },
-        }),
-        // Switch map or sequential mapping can be implemented down-stream inside the calling component
-      ) as unknown as Observable<BorrowHistory>;
-    // Note: To execute sequentially over explicit HTTP, flat mapping from component side is cleaner:
+  public addBook(data: AddBooksModel): Observable<Book> {
+    const body = { ...data, status: 'Available' as BookStatus };
+    return this.http.post<Book>(`${this.baseUrl}/book`, body);
   }
 
   /**
-   * Alternate Safe Sequence Wrapper for Borrowing to avoid loose streams:
+   *  Borrows a book safely using sequential mapping
+   * Updates the asset state FIRST, and only writes to history if that step succeeds.
    */
   public executeBorrowTransaction(
-    userId: string,
-    bookId: number,
+    data: BorrowBookRequest,
   ): Observable<BorrowHistory> {
+    const startDate: string = new Date().toISOString().split('T')[0]; // "2026-05-13"
+    const parsedDate: Date = new Date(startDate);
+    parsedDate.setDate(parsedDate.getDate() + 7);
+    const dueDate: string = parsedDate.toISOString().split('T')[0];
+
     const logPayload = {
-      userId,
-      bookId,
-      borrowDate: new Date().toISOString().split('T')[0],
-      returnDate: null,
+      ...data,
+      borrowDate: startDate,
+      returnDate: dueDate,
     };
 
-    // First, update book status
-    this.http
-      .patch<Book>(
-        `${this.baseUrl}/books/${bookId}`,
-        { status: 'Issued' },
-        { headers: this.getAuthHeaders() },
-      )
-      .subscribe();
-    // Then return record payload stream
-    return this.http.post<BorrowHistory>(
-      `${this.baseUrl}/borrowHistory`,
-      logPayload,
-      { headers: this.getAuthHeaders() },
-    );
+    // Step 1: Patch the book status
+    return this.http
+      .patch<Book>(`${this.baseUrl}/books/${data.bookId}`, {
+        status: 'Issued' as BookStatus,
+      })
+      .pipe(
+        // Step 2: Switch context to the history log stream seamlessly
+        concatMap(() =>
+          this.http.post<BorrowHistory>(
+            `${this.baseUrl}/borrowHistory`,
+            logPayload,
+          ),
+        ),
+      );
   }
 
   /**
-   * THE RETURN BOOK FLOW
-   * Sets book status to 'Available' and adds a returnDate to the transaction record
+   *  Processes returns safely
+   * Ensures the asset is marked as available and completes the tracking record.
    */
-  public returnBook(
-    historyId: number,
-    bookId: number,
-  ): Observable<BorrowHistory> {
+  public returnBook(data: ReturnBookRequest): Observable<BorrowHistory> {
     const returnDateString = new Date().toISOString().split('T')[0];
 
-    // 1. Update the Book asset profile to mark it as Available again
-    this.http
-      .patch<Book>(
-        `${this.baseUrl}/books/${bookId}`,
-        { status: 'Available' as BookStatus },
-        { headers: this.getAuthHeaders() },
-      )
-      .subscribe();
-
-    // 2. Patch the borrow tracking entity with completion timestamps
-    return this.http.patch<BorrowHistory>(
-      `${this.baseUrl}/borrowHistory/${historyId}`,
-      { returnDate: returnDateString },
-      { headers: this.getAuthHeaders() },
-    );
+    // Step 1: Reset book asset status to Available
+    return this.http
+      .patch<Book>(`${this.baseUrl}/books/${data.bookId}`, {
+        status: 'Available' as BookStatus,
+      })
+      .pipe(
+        // Step 2: Finalize timestamps on the transaction ledger entry
+        concatMap(() =>
+          this.http.patch<BorrowHistory>(
+            `${this.baseUrl}/borrowHistory/${data.historyId}`,
+            { returnDate: returnDateString },
+          ),
+        ),
+      );
   }
 
-  public reserveBook(
-    bookId: number,
-    queueNumber: number,
-  ): Observable<Reservation> {
-    return this.http.post<Reservation>(
-      `${this.baseUrl}/reservations`,
-      { book: String(bookId), queueNumber },
-      { headers: this.getAuthHeaders() },
-    );
+  /**
+   * Submits a reservation request queue item
+   */
+  public reserveBook(data: ReserveBookRequest): Observable<Reservation> {
+    return this.http.post<Reservation>(`${this.baseUrl}/reservations`, data);
   }
-
 }
+
