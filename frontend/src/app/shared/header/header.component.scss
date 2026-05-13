@@ -1,28 +1,26 @@
 .app-container {
-    align-items: stretch;
     height: 100vh;
     background-color: #F4F7FE;
 }
 
-/* Sidebar (Fixed Nav) */
 .main-nav {
     width: 280px;
     background-color: #1A1C23;
     color: white;
     border: none;
     border-radius: 0 10px 10px 0;
-    
+
     ::ng-deep .mat-drawer-inner-container {
         display: flex;
         flex-direction: column;
         height: 100%;
     }
+
     .nav-branding {
         padding: 32px 24px;
         display: flex;
         align-items: center;
         gap: 12px;
-        flex-shrink: 0;
 
         mat-icon {
             font-size: 32px;
@@ -53,7 +51,6 @@
         flex-direction: column;
         padding: 0 16px;
         gap: 8px;
-        /* Space between buttons */
 
         .sidebar-btn {
             width: 100%;
@@ -62,7 +59,6 @@
             height: 48px;
             border-radius: 8px;
             background-color: transparent;
-            /* Default state */
             color: #9ba1a6;
             font-weight: 500;
 
@@ -70,10 +66,8 @@
                 margin-right: 12px;
             }
 
-            /* State for the currently selected page */
             &.active-btn {
                 background-color: #1E88E5 !important;
-                /* Primary Blue */
                 color: white !important;
 
                 mat-icon {
@@ -88,36 +82,125 @@
         }
     }
 
-    .nav-footer {
+    .nav-auth-section {
+        padding: 16px;
         margin-top: auto;
-        padding: 24px;
-        font-size: 12px;
-        color: #5f6368;
-        text-align: center;
-        flex-shrink: 0;
+        bottom: 15px;
+
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background 0.2s;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.08);
+                color: white;
+            }
+
+            /*
+            display: flex;
+                align-items: center;
+                padding: 12px 16px;
+                cursor: pointer;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.03); 
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                margin-bottom: 8px;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.07);
+                    border-color: rgba(30, 136, 229, 0.3);
+                }
+            */
+
+            .user-avatar mat-icon {
+                font-size: 40px;
+                width: 40px;
+                height: 40px;
+                color: #A3AED0;
+                margin-right: 12px;
+
+            }
+
+            .user-info {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+
+                font-size: 14px;
+                color: #9ba1a6;
+                font-weight: 500;
+
+
+            }
+        }
     }
 }
 
-/* Ensure the button content (icon + text) aligns to the left */
 ::ng-deep .sidebar-btn .mdc-button__label {
     display: flex;
     align-items: center;
     width: 100%;
 }
+
 .content-area {
-    margin-left: 5px; /* Creates the 5px gap from the sidebar */
-    
-    background-color: azure; 
-    border-radius: 10px; /* Optional: adds symmetry if you want the content rounded too */
+    margin-left: 5px;
+    background-color: azure;
+    border-radius: 10px;
     padding: 24px;
-    height: calc(100vh - 48px); /* Adjusts height if you use padding */
+    height: calc(100vh - 48px);
     display: flex;
     flex-direction: column;
-    // ::ng-deep > :first-child {
-    //     flex: 1;         /* Makes the rendered component grow to fill space */
-    //     display: flex;   /* Optional: allows the internal 404 content to be centered */
-    //     flex-direction: column;
-    //     background-color: white; /* Optional: gives the component its own background */
-    //     border-radius: 10px;    /* Matches your sidebar's aesthetic */
-    // }
+}
+
+::ng-deep {
+    .mat-mdc-menu-panel {
+        background-color: #242731 !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+        padding: 8px !important;
+    }
+
+    .mat-mdc-menu-item {
+        border-radius: 8px !important;
+        margin-bottom: 4px;
+        color: #A3AED0 !important;
+        transition: all 0.2s ease;
+
+        .mat-icon {
+            color: #A3AED0 !important;
+            margin-right: 12px !important;
+        }
+
+        &:hover:not([disabled]) {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            color: white !important;
+
+            .mat-icon {
+                color: #ffffff !important;
+            }
+        }
+    }
+
+    .logout-item {
+        &:hover:not([disabled]) {
+            background-color: rgba(255, 82, 82, 0.1) !important;
+            color: #FF5252 !important;
+
+            .mat-icon {
+                color: #FF5252 !important;
+            }
+        }
+    }
+
+    .mat-divider {
+        border-top-color: rgba(255, 255, 255, 0.05) !important;
+        margin: 8px 0 !important;
+    }
+
 }
