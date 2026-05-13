@@ -1,14 +1,14 @@
 import {
   trustedHTMLFromString
-} from "./chunk-U7H3DPGE.js";
+} from "./chunk-EH3276AR.js";
 import {
   DomSanitizer,
   HttpClient
-} from "./chunk-BIWCCDLK.js";
-import "./chunk-25MQVZ6X.js";
+} from "./chunk-I4MSOWAA.js";
+import "./chunk-22Z6JZBK.js";
 import {
   BidiModule
-} from "./chunk-DLDVFTFV.js";
+} from "./chunk-D4GOUSBL.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -47,7 +47,7 @@ import {
   ɵɵinject,
   ɵɵprojection,
   ɵɵprojectionDef
-} from "./chunk-FOEQLFKQ.js";
+} from "./chunk-R3HO2OVY.js";
 import "./chunk-WDMUDEB6.js";
 
 // node_modules/@angular/material/fesm2022/_icon-registry-chunk.mjs

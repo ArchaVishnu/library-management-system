@@ -3485,17 +3485,6 @@ function skip(count2) {
   });
 }
 
-// node_modules/rxjs/dist/esm5/internal/operators/skipWhile.js
-function skipWhile(predicate) {
-  return operate(function(source, subscriber) {
-    var taking = false;
-    var index = 0;
-    source.subscribe(createOperatorSubscriber(subscriber, function(value) {
-      return (taking || (taking = !predicate(value, index++))) && subscriber.next(value);
-    }));
-  });
-}
-
 // node_modules/rxjs/dist/esm5/internal/operators/startWith.js
 function startWith() {
   var values = [];
@@ -3541,21 +3530,6 @@ function takeUntil(notifier) {
       return subscriber.complete();
     }, noop));
     !subscriber.closed && source.subscribe(subscriber);
-  });
-}
-
-// node_modules/rxjs/dist/esm5/internal/operators/takeWhile.js
-function takeWhile(predicate, inclusive) {
-  if (inclusive === void 0) {
-    inclusive = false;
-  }
-  return operate(function(source, subscriber) {
-    var index = 0;
-    source.subscribe(createOperatorSubscriber(subscriber, function(value) {
-      var result = predicate(value, index++);
-      (result || inclusive) && subscriber.next(value);
-      !result && subscriber.complete();
-    }));
   });
 }
 
@@ -29193,11 +29167,9 @@ export {
   share,
   shareReplay,
   skip,
-  skipWhile,
   startWith,
   switchMap,
   takeUntil,
-  takeWhile,
   tap,
   setCurrentInjector,
   setAlternateWeakRefImpl,
@@ -29702,4 +29674,4 @@ export {
   RESPONSE_INIT,
   REQUEST_CONTEXT
 };
-//# sourceMappingURL=chunk-FOEQLFKQ.js.map
+//# sourceMappingURL=chunk-R3HO2OVY.js.map

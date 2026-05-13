@@ -1,6 +1,6 @@
 import {
   MediaMatcher
-} from "./chunk-RHOWCU47.js";
+} from "./chunk-K6IJCGEJ.js";
 import {
   ANIMATION_MODULE_TYPE,
   InjectionToken,
@@ -9,12 +9,7 @@ import {
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-FOEQLFKQ.js";
-
-// node_modules/@angular/cdk/fesm2022/_test-environment-chunk.mjs
-function _isTestEnvironment() {
-  return typeof __karma__ !== "undefined" && !!__karma__ || typeof jasmine !== "undefined" && !!jasmine || typeof jest !== "undefined" && !!jest || typeof Mocha !== "undefined" && !!Mocha;
-}
+} from "./chunk-R3HO2OVY.js";
 
 // node_modules/@angular/cdk/fesm2022/platform.mjs
 var PlatformModule = class _PlatformModule {
@@ -69,7 +64,6 @@ function _animationsDisabled() {
 }
 
 export {
-  _isTestEnvironment,
   _animationsDisabled
 };
-//# sourceMappingURL=chunk-QOYRBAG6.js.map
+//# sourceMappingURL=chunk-2A667ZF3.js.map

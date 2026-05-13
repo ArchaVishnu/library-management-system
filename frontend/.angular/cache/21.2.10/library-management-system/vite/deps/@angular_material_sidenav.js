@@ -3,36 +3,36 @@ import {
   CdkScrollableModule,
   ScrollDispatcher,
   ViewportRuler
-} from "./chunk-JM7EU4HX.js";
-import "./chunk-ZD4CPINK.js";
+} from "./chunk-7GERJTIY.js";
+import "./chunk-7UQ3X4RP.js";
 import {
   _animationsDisabled
-} from "./chunk-QOYRBAG6.js";
+} from "./chunk-2A667ZF3.js";
 import {
   ESCAPE,
   FocusMonitor,
   FocusTrapFactory,
   InteractivityChecker,
   hasModifierKey
-} from "./chunk-RHOWCU47.js";
+} from "./chunk-K6IJCGEJ.js";
 import "./chunk-GUGIMSVJ.js";
 import {
   Platform
-} from "./chunk-FBTU22G7.js";
+} from "./chunk-YEOKQ6NA.js";
+import "./chunk-EH3276AR.js";
+import "./chunk-I4MSOWAA.js";
+import "./chunk-22Z6JZBK.js";
 import {
   coerceBooleanProperty
-} from "./chunk-42QFQP6S.js";
+} from "./chunk-2OHV5IG7.js";
 import "./chunk-N4DOILP3.js";
 import {
   coerceNumberProperty
-} from "./chunk-TOV7TVDV.js";
-import "./chunk-U7H3DPGE.js";
-import "./chunk-BIWCCDLK.js";
-import "./chunk-25MQVZ6X.js";
+} from "./chunk-BM2GT57P.js";
 import {
   BidiModule,
   Directionality
-} from "./chunk-DLDVFTFV.js";
+} from "./chunk-D4GOUSBL.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -90,7 +90,7 @@ import {
   ɵɵrestoreView,
   ɵɵstyleProp,
   ɵɵviewQuery
-} from "./chunk-FOEQLFKQ.js";
+} from "./chunk-R3HO2OVY.js";
 import "./chunk-WDMUDEB6.js";
 
 // node_modules/@angular/material/fesm2022/sidenav.mjs
