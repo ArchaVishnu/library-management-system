@@ -1,16 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
-import {
-  ConfigurableFocusTrapFactory,
-  FocusTrapFactory,
-} from '@angular/cdk/a11y';
-import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+
 
 @Component({
   selector: 'lms-header',
@@ -23,18 +21,34 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     MatDividerModule,
     RouterLink,
     RouterLinkActive,
+    MatMenuModule
 ],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  providers: [
-    { provide: FocusTrapFactory, useClass: ConfigurableFocusTrapFactory },
-  ],
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  isLoggedIn = signal<boolean>(false);
+
+  // User Data
+  user = {
+    name: 'Alex Smith',
+    role: 'Senior Librarian',
+    avatar: 'account_circle'
+  };
+  
   navItems = [
     { label: 'Dashboard', icon: 'dashboard',link:'/dashboard'  },
     { label: 'Book Catalog', icon: 'menu_book',link:'/catalog' },
     { label: 'Members', icon: 'people',link:'/members' },
     { label: 'Borrowing', icon: 'swap_horiz',link:'/borrow' }
   ];
+  logout() {
+    this.isLoggedIn.set(!this.isLoggedIn())
+  }
+
+  login() {
+       this.isLoggedIn.set(!this.isLoggedIn())
+
+  }
+  
 }
