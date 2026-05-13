@@ -40,7 +40,7 @@ export class BooksService {
     isbn: string = 'any',
   ): Observable<Book> {
     const body = { title, author, isbn, status: 'Available' as BookStatus };
-    return this.http.post<Book>(`${this.baseUrl}/books`, body, {
+    return this.http.post<Book>(`${this.baseUrl}/book`, body, {
       headers: this.getAuthHeaders(),
     });
   }
