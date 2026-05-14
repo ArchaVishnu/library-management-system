@@ -1,44 +1,251 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "AA000001",
       "email": "librarian@lms.com",
       "password": "123456",
-      "name":"Librarian",
+      "name": "Rajesh Menon",
       "role": "librarian"
     },
     {
-      "id": 2,
-      "email": "student@lms.com",
-      "name":"Student A",
+      "id": "UA000002",
+      "email": "ananya.krishna@lms.com",
       "password": "123456",
+      "name": "Ananya Krishna",
+      "role": "student"
+    },
+    {
+      "id": "UB000003",
+      "email": "arjun.nair@lms.com",
+      "password": "123456",
+      "name": "Arjun Nair",
+      "role": "student"
+    },
+    {
+      "id": "UC000004",
+      "email": "priya.suresh@lms.com",
+      "password": "123456",
+      "name": "Priya Suresh",
+      "role": "student"
+    },
+    {
+      "id": "UD000005",
+      "email": "rahul.varma@lms.com",
+      "password": "123456",
+      "name": "Rahul Varma",
+      "role": "student"
+    },
+    {
+      "id": "UA000006",
+      "email": "meera.pillai@lms.com",
+      "password": "123456",
+      "name": "Meera Pillai",
+      "role": "student"
+    },
+    {
+      "id": "UB000007",
+      "email": "vishnu.das@lms.com",
+      "password": "123456",
+      "name": "Vishnu Das",
+      "role": "student"
+    },
+    {
+      "id": "UC000008",
+      "email": "lakshmi.kumar@lms.com",
+      "password": "123456",
+      "name": "Lakshmi Kumar",
       "role": "student"
     }
   ],
   "books": [
     {
-      "id": 1,
+      "id": "BK-000001",
       "title": "Clean Code",
-      "author": "Robert C Martin",
+      "author": "Robert C. Martin",
       "status": "Available",
-      "isbn":"any"
-      
-
+      "isbn": "978-0132350884",
+      "genre": "Programming",
+      "publishedYear": 2008
     },
     {
-      "id": 2,
+      "id": "BK-000002",
       "title": "Atomic Habits",
       "author": "James Clear",
       "status": "Issued",
-      "isbn":"any"
-
+      "isbn": "978-0735211292",
+      "genre": "Self-Help",
+      "publishedYear": 2018
+    },
+    {
+      "id": "BK-000003",
+      "title": "The Pragmatic Programmer",
+      "author": "Andrew Hunt, David Thomas",
+      "status": "Available",
+      "isbn": "978-0201616224",
+      "genre": "Programming",
+      "publishedYear": 1999
+    },
+    {
+      "id": "BK-000004",
+      "title": "Deep Work",
+      "author": "Cal Newport",
+      "status": "Reserved",
+      "isbn": "978-1455586691",
+      "genre": "Self-Help",
+      "publishedYear": 2016
+    },
+    {
+      "id": "BK-000005",
+      "title": "Introduction to Algorithms",
+      "author": "Thomas H. Cormen",
+      "status": "Available",
+      "isbn": "978-0262033848",
+      "genre": "Computer Science",
+      "publishedYear": 2009
+    },
+    {
+      "id": "BK-000006",
+      "title": "Design Patterns",
+      "author": "Gang of Four",
+      "status": "Issued",
+      "isbn": "978-0201633610",
+      "genre": "Programming",
+      "publishedYear": 1994
+    },
+    {
+      "id": "BK-000007",
+      "title": "The Lean Startup",
+      "author": "Eric Ries",
+      "status": "Available",
+      "isbn": "978-0307887894",
+      "genre": "Business",
+      "publishedYear": 2011
+    },
+    {
+      "id": "BK-000008",
+      "title": "You Don't Know JS",
+      "author": "Kyle Simpson",
+      "status": "Available",
+      "isbn": "978-1491924464",
+      "genre": "Programming",
+      "publishedYear": 2015
+    },
+    {
+      "id": "BK-000009",
+      "title": "Thinking, Fast and Slow",
+      "author": "Daniel Kahneman",
+      "status": "Reserved",
+      "isbn": "978-0374533557",
+      "genre": "Psychology",
+      "publishedYear": 2011
+    },
+    {
+      "id": "BK-000010",
+      "title": "The Mythical Man-Month",
+      "author": "Frederick P. Brooks Jr.",
+      "status": "Available",
+      "isbn": "978-0201835953",
+      "genre": "Software Engineering",
+      "publishedYear": 1975
     }
   ],
-  "borrowHistory": [],
-  "reservations": [
-    {"book":"1","queueNumber":2},
-    {"book":"2","queueNumber":2}
-
+  "borrowHistory": [
+    {
+      "id": 1,
+      "userId": "UA000002",
+      "bookId": "BK-000002",
+      "borrowDate": "2026-04-01",
+      "returnDate": null,
+      "dueDate": "2026-04-15",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "userId": "UB000003",
+      "bookId": "BK-000006",
+      "borrowDate": "2026-04-10",
+      "returnDate": null,
+      "dueDate": "2026-04-24",
+      "status": "Overdue"
+    },
+    {
+      "id": 3,
+      "userId": "UC000004",
+      "bookId": "BK-000001",
+      "borrowDate": "2026-03-15",
+      "returnDate": "2026-03-28",
+      "dueDate": "2026-03-29",
+      "status": "Returned"
+    },
+    {
+      "id": 4,
+      "userId": "UD000005",
+      "bookId": "BK-000003",
+      "borrowDate": "2026-03-20",
+      "returnDate": "2026-04-02",
+      "dueDate": "2026-04-03",
+      "status": "Returned"
+    },
+    {
+      "id": 5,
+      "userId": "UA000006",
+      "bookId": "BK-000005",
+      "borrowDate": "2026-04-20",
+      "returnDate": "2026-05-04",
+      "dueDate": "2026-05-04",
+      "status": "Returned"
+    },
+    {
+      "id": 6,
+      "userId": "UB000007",
+      "bookId": "BK-000008",
+      "borrowDate": "2026-05-01",
+      "returnDate": null,
+      "dueDate": "2026-05-15",
+      "status": "Active"
+    },
+    {
+      "id": 7,
+      "userId": "UC000008",
+      "bookId": "BK-000010",
+      "borrowDate": "2026-04-05",
+      "returnDate": "2026-04-18",
+      "dueDate": "2026-04-19",
+      "status": "Returned"
+    }
   ],
-  "systemState": [{ "id": "userTracker", "lastSequence": 0 },{"id":"booksTracker", "lastSequence":0}]
+  "reservations": [
+    {
+      "id": 1,
+      "userId": "UB000003",
+      "book": "BK-000004",
+      "queueNumber": 1,
+      "reservedDate": "2026-05-10"
+    },
+    {
+      "id": 2,
+      "userId": "UC000004",
+      "book": "BK-000009",
+      "queueNumber": 1,
+      "reservedDate": "2026-05-11"
+    },
+    {
+      "id": 3,
+      "userId": "UD000005",
+      "book": "BK-000004",
+      "queueNumber": 2,
+      "reservedDate": "2026-05-12"
+    },
+    {
+      "id": 4,
+      "userId": "UA000006",
+      "book": "BK-000009",
+      "queueNumber": 2,
+      "reservedDate": "2026-05-13"
+    }
+  ],
+  "systemState": [
+    { "id": "userTracker", "lastSequence": 8 },
+    { "id": "booksTracker", "lastSequence": 10 }
+  ]
 }
