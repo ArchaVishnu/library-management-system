@@ -1,10 +1,10 @@
-export type UserRole = 'user' | 'librarian' | 'admin';
+export type UserRole = 'user' | 'admin';
 export type UserClass = 'A' | 'B' | 'C' | 'D';
 export interface User {
   id: string;
   email: string;
   role: UserRole;
-  name?: string;
+  name: string;
 }
 
 export interface UserData {

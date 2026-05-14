@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { UsersService } from '../../core/services/users.service';
 
 @Component({
   selector: 'lms-header',
@@ -21,34 +21,23 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDividerModule,
     RouterLink,
     RouterLinkActive,
-    MatMenuModule
-],
+    MatMenuModule,
+  ],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  isLoggedIn = signal<boolean>(false);
+  constructor(private router: Router, private userService: UsersService) { }
 
-  // User Data
-  user = {
-    name: 'Alex Smith',
-    role: 'Senior Librarian',
-    avatar: 'account_circle'
-  };
-  
+  isLoggedIn = computed(() => this.userService.isLoggedIn())
+  loggedInUser = computed(() => this.userService.userSignal())
   navItems = [
-    { label: 'Dashboard', icon: 'dashboard',link:'/dashboard'  },
-    { label: 'Book Catalog', icon: 'menu_book',link:'/catalog' },
-    { label: 'Members', icon: 'people',link:'/members' },
-    { label: 'Borrowing', icon: 'swap_horiz',link:'/borrow' }
+    { label: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
+    { label: 'Book Catalog', icon: 'menu_book', link: '/catalog' },
+    { label: 'Members', icon: 'people', link: '/members' },
+    { label: 'Borrowing', icon: 'swap_horiz', link: '/borrow' },
   ];
-  logout() {
-    this.isLoggedIn.set(!this.isLoggedIn())
-  }
+  logout = () => this.userService.logoutUser();
+  login = () => this.router.navigate(['/login']);
 
-  login() {
-       this.isLoggedIn.set(!this.isLoggedIn())
-
-  }
-  
 }
