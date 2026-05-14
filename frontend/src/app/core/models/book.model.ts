@@ -14,6 +14,7 @@ export interface BorrowHistory {
   bookId: string;
   borrowDate: string;
   returnDate: string | null;
+  dueDate: string;
 }
 
 export interface Reservation {
@@ -45,11 +46,11 @@ export interface BorrowBookRequest {
 }
 
 export interface ReturnBookRequest {
-    historyId:number;
-    bookId:string;
+  historyId: number;
+  bookId: string;
 }
 
-export interface ReserveBookRequest{
-    bookId:string;
-    queueNumber:number;
+export interface ReserveBookRequest {
+  bookId: string;
+  queueNumber: number;
 }

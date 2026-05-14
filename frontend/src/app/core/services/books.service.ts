@@ -63,7 +63,8 @@ export class BooksService {
     const logPayload = {
       ...data,
       borrowDate: startDate,
-      returnDate: dueDate,
+      returnDate: null,
+      dueDate:dueDate
     };
 
     // Step 1: Patch the book status
