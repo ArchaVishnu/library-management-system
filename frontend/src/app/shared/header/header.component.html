@@ -24,13 +24,12 @@
                     <mat-icon>account_circle</mat-icon>
                 </div>
                 <div class="user-info">
-                    <span class="user-name">Alex Smith</span>
-                    <span class="user-role">Librarian</span>
+                    <span class="user-name" [innerText]="loggedInUser()!.name"></span>
+                    <span class="user-role" [innerText]="loggedInUser()!.role"></span>
                 </div>
             </div>
             }@else {
-
-            <div class="profile-container">
+            <div class="profile-container" (click)="login()">
                 <div class="user-avatar">
                     <mat-icon>account_circle</mat-icon>
                 </div>
