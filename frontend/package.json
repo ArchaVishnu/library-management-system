@@ -6,7 +6,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start": "ng serve"
+    "start": "ng serve",
+    "extract-i18n": "tsx scripts/tsconfig.scripts.json scripts/xlsx-to-i18n.ts"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "bootstrap": "^5.3.8",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
@@ -30,6 +32,7 @@
     "@angular/cli": "^21.2.10",
     "@angular/compiler-cli": "^21.2.12",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^25.7.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
