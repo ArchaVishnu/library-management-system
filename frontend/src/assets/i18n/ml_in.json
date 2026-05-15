@@ -1,0 +1,15 @@
+{
+  "core.role.admin": "അഡ്മിൻ",
+  "core.role.user": "ഉപയോക്താവ്",
+  "shared.header.dashboard": "ഡാഷ്‌ബോർഡ്",
+  "shared.header.bookCatalog": "പുസ്തക പട്ടിക",
+  "shared.borrow.members": "അംഗങ്ങൾ",
+  "shared.header.borrowing": "പുസ്തകങ്ങൾ കടമെടുക്കുക",
+  "shared.notFound.heading": "അയ്യോ!! പേജ് കണ്ടെത്താനായില്ല!!",
+  "shared.notFound.message": "നിങ്ങൾ തിരയുന്ന പേജ് നിലവിലില്ല അല്ലെങ്കിൽ മാറ്റപ്പെട്ടു. URL പരിശോധിക്കുക അല്ലെങ്കിൽ അവസാന പേജിലേക്ക് മടങ്ങുക.",
+  "shared.notFound.goBackBtn": "പിന്നിലേക്ക് പോകുക",
+  "shared.header.login": "ലോഗിൻ",
+  "shared.header.viewProfile": "പ്രൊഫൈൽ",
+  "shared.header.accountSettings": "അക്കൗണ്ട് സെറ്റിംഗ്സ്",
+  "shared.header.signOut": "ലോഗ് ഔട്ട്"
+}

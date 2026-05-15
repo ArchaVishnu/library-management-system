@@ -3,6 +3,13 @@ import { authGuard, guestGuard } from './core/config/auth.guard';
 
 export const routes: Routes = [
   {
+    path: '404',
+    loadComponent: () =>
+      import('./shared/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent,
+      ),
+  },
+  {
     path: 'login',
     canActivate: [guestGuard],
     loadComponent: () =>
@@ -19,19 +26,12 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     canActivate: [authGuard],
-    data:{
-        expectedRoles: ['admin']
+    data: {
+      expectedRoles: ['admin']
     },
     loadComponent: () =>
       import('./features/dashboard/dashboard.component').then(
         (m) => m.DashboardComponent,
-      ),
-  },
-  {
-    path: '404',
-    loadComponent: () =>
-      import('./shared/not-found/not-found.component').then(
-        (m) => m.NotFoundComponent,
       ),
   },
   {
@@ -42,5 +42,5 @@ export const routes: Routes = [
       ),
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: '404' },
 ];

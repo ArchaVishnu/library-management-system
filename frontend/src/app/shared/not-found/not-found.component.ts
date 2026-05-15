@@ -1,20 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Location } from '@angular/common';
 import { MatIconModule } from "@angular/material/icon";
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslatePipe } from '../../core/pipes/translate.pipe';
 
 @Component({
   selector: 'lms-not-found',
-  imports: [MatIconModule, CommonModule, RouterModule, MatButtonModule],
+  imports: [MatIconModule, CommonModule, RouterModule, MatButtonModule, TranslatePipe],
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.scss',
 })
 export class NotFoundComponent {
-  constructor(private location: Location) { }
+  constructor(private router: Router) { }
 
-  goBack(): void {
-    this.location.back();
-  }
+  goBack = () => this.router.navigate(['/'])
 }

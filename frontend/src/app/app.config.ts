@@ -13,6 +13,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { UsersService } from './core/services/users.service';
 import { errorInterceptor } from './core/config/error.interceptor';
+import { TranslateService } from './core/services/translation.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,9 +23,13 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([errorInterceptor]), // Ensures 401s intercept background expiry
     ),
     provideAppInitializer(() => {
+      const svc = inject(TranslateService);
       const userService = inject(UsersService);
 
-      return firstValueFrom(userService.initializeAuth());
+      return Promise.all([
+        svc.loadLocale('en_us'),
+        firstValueFrom(userService.initializeAuth()),
+      ]);
     }),
     { provide: APP_ENVIRONMENT, useValue: environment },
   ],

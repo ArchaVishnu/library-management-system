@@ -1,0 +1,15 @@
+{
+  "core.role.admin": "Admin",
+  "core.role.user": "User",
+  "shared.header.dashboard": "Dashboard",
+  "shared.header.bookCatalog": "Book Catalog",
+  "shared.borrow.members": "Members",
+  "shared.header.borrowing": "Borrowing",
+  "shared.notFound.heading": "Oops!! Page Not Found!!",
+  "shared.notFound.message": "The page you're looking for doesn't exist or has been moved. Check the URL or return to the last page.",
+  "shared.notFound.goBackBtn": "Go Back",
+  "shared.header.login": "Login",
+  "shared.header.viewProfile": "View Profile",
+  "shared.header.accountSettings": "Account Settings",
+  "shared.header.signOut": "Sign Out"
+}
