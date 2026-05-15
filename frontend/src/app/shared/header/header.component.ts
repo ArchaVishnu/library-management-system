@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { UsersService } from '../../core/services/users.service';
+import { TranslatePipe } from '../../core/pipes/translate.pipe';
 
 @Component({
   selector: 'lms-header',
@@ -22,6 +23,7 @@ import { UsersService } from '../../core/services/users.service';
     RouterLink,
     RouterLinkActive,
     MatMenuModule,
+    TranslatePipe
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -32,10 +34,10 @@ export class HeaderComponent {
   isLoggedIn = computed(() => this.userService.isLoggedIn())
   loggedInUser = computed(() => this.userService.userSignal())
   navItems = [
-    { label: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
-    { label: 'Book Catalog', icon: 'menu_book', link: '/catalog' },
-    { label: 'Members', icon: 'people', link: '/members' },
-    { label: 'Borrowing', icon: 'swap_horiz', link: '/borrow' },
+    { label: 'shared.header.dashboard', icon: 'dashboard', link: '/dashboard' },
+    { label: 'shared.header.bookCatalog', icon: 'menu_book', link: '/catalog' },
+    { label: 'shared.borrow.members', icon: 'people', link: '/members' },
+    { label: 'shared.header.borrowing', icon: 'swap_horiz', link: '/borrow' },
   ];
   logout = () => this.userService.logoutUser();
   login = () => this.router.navigate(['/login']);

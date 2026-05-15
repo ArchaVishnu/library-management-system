@@ -2,11 +2,8 @@
     <div class="content">
         <mat-icon class="error-icon">search_off</mat-icon>
         <h1>404</h1>
-        <h2>Oops!! Page Not Found!!</h2>
-        <p>
-            The page you're looking for doesn't exist or has been moved.
-            Check the URL or return to the last page.
-        </p>
-        <button mat-flat-button color="accent" style="background-color: #1E88E5; color:#ffffff" (click)="goBack()">Go Back</button>
+        <h2 [innerText]="'shared.notFound.heading' | translate"></h2>
+        <p [innerText]="'shared.notFound.message' | translate"> </p>
+        <button mat-flat-button color="accent" style="background-color: #1E88E5; color:#ffffff" (click)="goBack()" [innerText]="'shared.notFound.goBackBtn' | translate"></button>
     </div>
 </div>
