@@ -1,6 +1,6 @@
 .app-container {
     height: 100vh;
-    background-color: #F4F7FE;
+    background-color:#faf9fd;
 }
 
 .main-nav {
@@ -54,13 +54,10 @@
 
         .sidebar-btn {
             width: 100%;
-            justify-content: flex-start;
-            text-align: left;
             height: 48px;
             border-radius: 8px;
             background-color: transparent;
             color: #9ba1a6;
-            font-weight: 500;
 
             mat-icon {
                 margin-right: 12px;
@@ -149,12 +146,13 @@
 
 .content-area {
     margin-left: 5px;
-    background-color: azure;
-    border-radius: 10px;
+    background-color: #faf9fd;
     padding: 24px;
     height: calc(100vh - 48px);
+    flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
 }
 
 ::ng-deep {

@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-card {
+  width: 35% !important;
+  height: 75% !important;
+  background-color: #fffefe;
+
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
