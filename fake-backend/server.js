@@ -421,7 +421,7 @@ app.post("/borrowHistory", (req, res) => {
 
   const historyEntry = {
     id: nextNumericId("borrowHistory"),
-    userId: user.libraryCardId || user.libraryCardId || String(user.id),
+    userId: user.libraryCardId || String(user.id),
     bookId: book.bookId,
     borrowDate,
     returnDate: null,
