@@ -31,7 +31,11 @@ export class UsersService {
     return !this.isTokenExpired(token);
   });
 
-  public isAdmin = computed(() => this.userSignal()!.role === 'admin');
+  readonly isAdmin = computed(() => {
+    const role = this.userSignal()?.role?.toLowerCase();
+
+    return role === 'admin' || role === 'librarian';
+  });
   public getAuthHeaders(): HttpHeaders {
     const token = this.tokenSignal();
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -41,7 +45,7 @@ export class UsersService {
     return headers;
   }
 
-  
+
   constructor(
     private http: HttpClient,
     private zone: NgZone,
@@ -74,7 +78,7 @@ export class UsersService {
       .post<AuthResponse>(`${this.baseUrl}/login`, data)
       .pipe(tap((res) => this.saveSession(res.accessToken, res.user)));
   }
-  
+
 
   public logoutUser(): void {
     this.tokenSignal.set(null);
@@ -140,7 +144,7 @@ export class UsersService {
       this.userSignal.set(user);
     }
   }
-  
+
   private getStoredUser(): User | null {
     const user = localStorage.getItem(AUTH_KEYS.INFO);
     return user ? JSON.parse(user) : null;

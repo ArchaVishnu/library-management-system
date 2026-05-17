@@ -48,21 +48,13 @@ interface NavItem {
 export class HeaderComponent {
   @ViewChild('sidenav') sidenav?: MatSidenav;
 
-  readonly guestLinkKey = 'catalog';
-
   readonly isLoggedIn = computed(() => this.userService.isLoggedIn());
   readonly loggedInUser = computed(() => this.userService.userSignal());
-  // readonly isAdmin = computed(() => this.userService.isAdmin())
-   readonly isAdmin = computed(() => {
-    const role = this.loggedInUser()?.role?.toLowerCase();
-
-    return role === 'admin' || role === 'librarian';
-  });
-
+  readonly isAdmin = computed(() => this.userService.isAdmin());
 
   readonly isMobile = signal<boolean>(false);
   readonly sidenavOpened = signal<boolean>(true);
-  
+  readonly guestLinkKey = 'catalog';
 
   readonly navItems: NavItem[] = [
     {
@@ -113,7 +105,7 @@ export class HeaderComponent {
     this.closeSidenavOnMobile();
   }
   visibleNavLinks() {
-    if (this.isAdmin()) {return this.navItems;}
+    if (this.isAdmin()) { return this.navItems; }
     return this.navItems.filter((link) => link.key === this.guestLinkKey);
   }
 

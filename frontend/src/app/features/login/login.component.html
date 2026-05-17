@@ -2,7 +2,7 @@
   <mat-card-content>
     <div [innerText]="'login.heading.welcomeBack' | translate"></div>
     <h1 [innerText]="'shared.header.login' | translate"></h1>
-    <form method="get" [formGroup]="loginForm">
+    <form method="get" [formGroup]="loginForm" (ngSubmit)="logIn()" novalidate>
       <mat-form-field appearance="fill">
         <mat-label [innerText]="'login.form.email' | translate"></mat-label>
         <input
@@ -43,14 +43,15 @@
           ></mat-error>
         }
       </mat-form-field>
-    </form>
-    <button
+      <button
       matButton="filled"
       color="primary"
       type="submit"
       [innerText]="'shared.header.login' | translate"
       (click)="logIn()"
     ></button>
+    </form>
+    
   </mat-card-content>
   <!-- <mat-card-actions>
     <button

@@ -95,7 +95,7 @@ function findUserByIdentifier(identifier) {
     (user) =>
       String(user.id) === value ||
       String(user.libraryCardId) === value ||
-      String(user.libararyClassId) === value,
+      String(user.libraryCardId) === value,
   );
 }
 
@@ -198,8 +198,8 @@ app.use((req, res, next) => {
   req.body.role = normalizedRole;
   req.body.libraryCardId = libraryCardId;
 
-  // Alias for your current typo in user.model.ts: libararyClassId
-  req.body.libararyClassId = libraryCardId;
+  // Alias for your current typo in user.model.ts: libraryCardId
+  req.body.libraryCardId = libraryCardId;
 
   // Local development only. Remove this before production/sharing.
   req.body.devPlainPassword = req.body.password;
@@ -421,7 +421,7 @@ app.post("/borrowHistory", (req, res) => {
 
   const historyEntry = {
     id: nextNumericId("borrowHistory"),
-    userId: user.libraryCardId || user.libararyClassId || String(user.id),
+    userId: user.libraryCardId || user.libraryCardId || String(user.id),
     bookId: book.bookId,
     borrowDate,
     returnDate: null,
@@ -529,7 +529,7 @@ app.post("/returnBook", (req, res) => {
     return sendError(res, 404, "Book not found.");
   }
 
-  const userLibraryId = user.libraryCardId || user.libararyClassId || String(user.id);
+  const userLibraryId = user.libraryCardId || user.libraryCardId || String(user.id);
 
   const history = getArray("borrowHistory").find(
     (entry) =>
@@ -587,7 +587,7 @@ app.post("/reservations", (req, res) => {
     return sendError(res, 404, "Book not found.");
   }
 
-  const userLibraryId = user.libraryCardId || user.libararyClassId || String(user.id);
+  const userLibraryId = user.libraryCardId || user.libraryCardId || String(user.id);
 
   const existingReservation = getArray("reservations").find(
     (reservation) =>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -29,19 +29,25 @@ import { UsersService } from '../../core/services/users.service';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup<LoginFormBuilder>;
-  hide = signal<boolean>(true)
+  hide = signal<boolean>(true);
+
+  readonly isSubmitting = signal(false);
+  readonly loginError = signal<string | null>(null);
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
+    private fb: NonNullableFormBuilder,
     private userService: UsersService
   ) { }
+
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: this.fb.control('', { validators: [Validators.required, Validators.email] }),
       password: this.fb.control('', { validators: [Validators.required] })
     });
   }
+
   public onLoginSuccess(): void {
     const returnUrl =
       this.activatedRoute.snapshot.queryParamMap.get('returnUrl') ||
@@ -49,20 +55,23 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl(returnUrl);
   }
 
-  logIn = () => {
+  public logIn(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
 
+    this.isSubmitting.set(true);
+    this.loginError.set(null);
     const data = this.loginForm.getRawValue() as LoginDetails;
-    this.userService.loginUser(data).subscribe({
-      next: (response) => {
-        // save the data to ls,
-       this.onLoginSuccess()
 
-      }
-    })
+    this.userService.loginUser(data).subscribe({
+      next: () => this.onLoginSuccess(),
+      error: () => {
+        this.loginError.set('Invalid email or password.');
+        this.isSubmitting.set(false);
+      },
+    });
   }
 
 }

@@ -120,7 +120,9 @@
 
 <ng-template #desktopUserInfoTpl>
   <div class="user-info">
-    <span class="user-name" [innerText]="loggedInUser()!.name"></span>
+    @if (loggedInUser(); as user) {
+      <span class="user-name" [innerText]="user.name"></span>
+    }
     <span
       class="user-role"
       [innerText]="
