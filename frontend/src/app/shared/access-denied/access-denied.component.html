@@ -1,1 +1,18 @@
-<p>access-denied works!</p>
+<div class="no-access-container">
+  <div class="content">
+    <mat-icon class="error-icon">search_off</mat-icon>
+
+    <h1>404</h1>
+
+    <h2 [innerText]="'shared.notFound.heading' | translate"></h2>
+
+    <p [innerText]="'shared.notFound.message' | translate"></p>
+
+    <button
+      mat-flat-button
+      class="not-found-action"
+      (click)="goBack()"
+      [innerText]="'shared.notFound.goBackBtn' | translate">
+    </button>
+  </div>
+</div>

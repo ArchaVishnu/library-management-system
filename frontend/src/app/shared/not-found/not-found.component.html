@@ -1,9 +1,18 @@
-<div class="not-foun-container">
-    <div class="content">
-        <mat-icon class="error-icon">search_off</mat-icon>
-        <h1>404</h1>
-        <h2 [innerText]="'shared.notFound.heading' | translate"></h2>
-        <p [innerText]="'shared.notFound.message' | translate"> </p>
-        <button mat-flat-button color="accent" style="background-color: #1E88E5; color:#ffffff" (click)="goBack()" [innerText]="'shared.notFound.goBackBtn' | translate"></button>
-    </div>
+<div class="not-found-container">
+  <div class="content">
+    <mat-icon class="error-icon">search_off</mat-icon>
+
+    <h1>404</h1>
+
+    <h2 [innerText]="'shared.notFound.heading' | translate"></h2>
+
+    <p [innerText]="'shared.notFound.message' | translate"></p>
+
+    <button
+      mat-flat-button
+      class="not-found-action"
+      (click)="goBack()"
+      [innerText]="'shared.notFound.goBackBtn' | translate">
+    </button>
+  </div>
 </div>

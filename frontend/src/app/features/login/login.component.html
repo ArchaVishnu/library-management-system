@@ -1,0 +1,63 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div [innerText]="'login.heading.welcomeBack' | translate"></div>
+    <h1 [innerText]="'shared.header.login' | translate"></h1>
+    <form method="get" [formGroup]="loginForm" (ngSubmit)="logIn()" novalidate>
+      <mat-form-field appearance="fill">
+        <mat-label [innerText]="'login.form.email' | translate"></mat-label>
+        <input
+          type="email"
+          matInput
+          [placeholder]="'login.form.emailPlaceholder' | translate"
+          formControlName="email"
+        />
+        @if (loginForm.controls.email.hasError("required")) {
+          <mat-error
+            [innerText]="'login.form.requiredError' | translate"
+          ></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label [innerText]="'login.form.password' | translate"></mat-label>
+        <input
+          [type]="hide() ? 'password' : 'text'"
+          matInput
+          [placeholder]="'login.form.passwordPlaceholder' | translate"
+          formControlName="password"
+        />
+        <button type="button"
+          matIconButton
+          matSuffix
+          (click)="hide.set(!hide())"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon
+            [innerText]="hide() ? 'visibility_off' : 'visibility'"
+          ></mat-icon>
+        </button>
+
+        @if (loginForm.controls.password.hasError("required")) {
+          <mat-error
+            [innerText]="'login.form.requiredError' | translate"
+          ></mat-error>
+        }
+      </mat-form-field>
+      <button
+      matButton="filled"
+      color="primary"
+      type="submit"
+      [innerText]="'shared.header.login' | translate"
+      (click)="logIn()"
+    ></button>
+    </form>
+    
+  </mat-card-content>
+  <!-- <mat-card-actions>
+    <button
+      matButton="filled"
+      color="primary"
+      
+    ></button>
+  </mat-card-actions> -->
+</mat-card>

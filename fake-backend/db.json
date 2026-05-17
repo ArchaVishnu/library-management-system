@@ -1,65 +1,82 @@
 {
-  "users": [
+"users": [
     {
-      "id": "AA000001",
+      "id": 1,
+      "libraryCardId": "AA000001",
       "email": "librarian@lms.com",
-      "password": "123456",
+      "password": "$2a$10$RIpSb9jXdErmp704glqLaePKXw/Os55JbPLRmF1TL4ZOEqh2b3q/K",
+      "devPlainPassword": "librarianAA000001",
       "name": "Rajesh Menon",
-      "role": "librarian"
+      "role": "admin"
     },
     {
-      "id": "UA000002",
+      "id": 2,
+      "libraryCardId": "UA000002",
       "email": "ananya.krishna@lms.com",
-      "password": "123456",
+      "password": "$2a$10$bALaEvsnJyWbEMjAtJ36YOWIOzgGlWQ4axemtzbc5m69CP7Y9QMfW",
+      "devPlainPassword": "studentUA000002",
       "name": "Ananya Krishna",
       "role": "student"
     },
     {
-      "id": "UB000003",
+      "id": 3,
+      "libraryCardId": "UB000003",
       "email": "arjun.nair@lms.com",
-      "password": "123456",
+      "password": "$2a$10$t8PMt15D6zm5BkixeInfwe0sz2BRgKsbs8SKkabPvZgwpuzV1hMDC",
+      "devPlainPassword": "studentUB000003",
       "name": "Arjun Nair",
       "role": "student"
     },
     {
-      "id": "UC000004",
+      "id": 4,
+      "libraryCardId": "UC000004",
       "email": "priya.suresh@lms.com",
-      "password": "123456",
+      "password": "$2a$10$PqNITDtv3n5hEsFUlbNoMuh6ESEgZpP0jKyxR.BdzMqOLgmeKbQT6",
+      "devPlainPassword": "studentUC000004",
       "name": "Priya Suresh",
       "role": "student"
     },
     {
-      "id": "UD000005",
+      "id": 5,
+      "libraryCardId": "UD000005",
       "email": "rahul.varma@lms.com",
-      "password": "123456",
+      "password": "$2a$10$WAW9K0qZkaTexuCWGTuroO42.4GE19JjMdUhARfjr5BFKzw.jPOW2",
+      "devPlainPassword": "studentUD000005",
       "name": "Rahul Varma",
       "role": "student"
     },
     {
-      "id": "UA000006",
+      "id": 6,
+      "libraryCardId": "UA000006",
       "email": "meera.pillai@lms.com",
-      "password": "123456",
+      "password": "$2a$10$CJcHTTgAFi7D0L/VK1uYdudBYo6V.sMt9KfBUwFd1NuDXv6WoYgAW",
+      "devPlainPassword": "studentUA000006",
       "name": "Meera Pillai",
       "role": "student"
     },
     {
-      "id": "UB000007",
+      "id": 7,
+      "libraryCardId": "UB000007",
       "email": "vishnu.das@lms.com",
-      "password": "123456",
+      "password": "$2a$10$nWk3ke256fJsm6fX0r2Q5.7.Oy9PFERTthO6WV83iz.FJyb0gIuMu",
+      "devPlainPassword": "studentUB000007",
       "name": "Vishnu Das",
       "role": "student"
     },
     {
-      "id": "UC000008",
+      "id": 8,
+      "libraryCardId": "UC000008",
       "email": "lakshmi.kumar@lms.com",
-      "password": "123456",
+      "password": "$2a$10$juksx8L2.oI7m3QpcheZRuFtZUWEot1Bm.zBvC/LgQDt3JD8cJJga",
+      "devPlainPassword": "studentUC000008",
       "name": "Lakshmi Kumar",
       "role": "student"
     }
   ],
   "books": [
     {
-      "id": "BK-000001",
+      "id":1,
+      "bookId": "BK-000001",
       "title": "Clean Code",
       "author": "Robert C. Martin",
       "status": "Available",
@@ -68,7 +85,8 @@
       "publishedYear": 2008
     },
     {
-      "id": "BK-000002",
+      "id":2,
+      "bookId": "BK-000002",
       "title": "Atomic Habits",
       "author": "James Clear",
       "status": "Issued",
@@ -77,7 +95,8 @@
       "publishedYear": 2018
     },
     {
-      "id": "BK-000003",
+      "id":3,
+      "bookId": "BK-000003",
       "title": "The Pragmatic Programmer",
       "author": "Andrew Hunt, David Thomas",
       "status": "Available",
@@ -86,7 +105,8 @@
       "publishedYear": 1999
     },
     {
-      "id": "BK-000004",
+      "id":4,
+      "bookId": "BK-000004",
       "title": "Deep Work",
       "author": "Cal Newport",
       "status": "Reserved",
@@ -95,7 +115,8 @@
       "publishedYear": 2016
     },
     {
-      "id": "BK-000005",
+      "id":5,
+      "bookId": "BK-000005",
       "title": "Introduction to Algorithms",
       "author": "Thomas H. Cormen",
       "status": "Available",
@@ -104,7 +125,8 @@
       "publishedYear": 2009
     },
     {
-      "id": "BK-000006",
+      "id":6,
+      "bookId": "BK-000006",
       "title": "Design Patterns",
       "author": "Gang of Four",
       "status": "Issued",
@@ -113,7 +135,8 @@
       "publishedYear": 1994
     },
     {
-      "id": "BK-000007",
+      "id":7,
+      "bookId": "BK-000007",
       "title": "The Lean Startup",
       "author": "Eric Ries",
       "status": "Available",
@@ -122,7 +145,8 @@
       "publishedYear": 2011
     },
     {
-      "id": "BK-000008",
+      "id":8,
+      "bookId": "BK-000008",
       "title": "You Don't Know JS",
       "author": "Kyle Simpson",
       "status": "Available",
@@ -131,7 +155,8 @@
       "publishedYear": 2015
     },
     {
-      "id": "BK-000009",
+      "id":9,
+      "bookId": "BK-000009",
       "title": "Thinking, Fast and Slow",
       "author": "Daniel Kahneman",
       "status": "Reserved",
@@ -140,7 +165,8 @@
       "publishedYear": 2011
     },
     {
-      "id": "BK-000010",
+      "id":10,
+      "bookId": "BK-000010",
       "title": "The Mythical Man-Month",
       "author": "Frederick P. Brooks Jr.",
       "status": "Available",
@@ -218,34 +244,40 @@
     {
       "id": 1,
       "userId": "UB000003",
-      "book": "BK-000004",
+      "bookId": "BK-000004",
       "queueNumber": 1,
       "reservedDate": "2026-05-10"
     },
     {
       "id": 2,
       "userId": "UC000004",
-      "book": "BK-000009",
+      "bookId": "BK-000009",
       "queueNumber": 1,
       "reservedDate": "2026-05-11"
     },
     {
       "id": 3,
       "userId": "UD000005",
-      "book": "BK-000004",
+      "bookId": "BK-000004",
       "queueNumber": 2,
       "reservedDate": "2026-05-12"
     },
     {
       "id": 4,
       "userId": "UA000006",
-      "book": "BK-000009",
+      "bookId": "BK-000009",
       "queueNumber": 2,
       "reservedDate": "2026-05-13"
     }
   ],
   "systemState": [
-    { "id": "userTracker", "lastSequence": 8 },
-    { "id": "booksTracker", "lastSequence": 10 }
+    {
+      "id": "userTracker",
+      "lastSequence": 8
+    },
+    {
+      "id": "booksTracker",
+      "lastSequence": 10
+    }
   ]
 }

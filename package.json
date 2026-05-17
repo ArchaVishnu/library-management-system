@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "start:frontend": "cd frontend && ng serve",
+    "start:frontend": "cd frontend && npm run extract-i18n && ng build && ng serve",
     "start:backend": "cd fake-backend && npm start"
   }
 }
