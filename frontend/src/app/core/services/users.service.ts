@@ -74,6 +74,7 @@ export class UsersService {
       .post<AuthResponse>(`${this.baseUrl}/login`, data)
       .pipe(tap((res) => this.saveSession(res.accessToken, res.user)));
   }
+  
 
   public logoutUser(): void {
     this.tokenSignal.set(null);

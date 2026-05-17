@@ -4,17 +4,17 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+
+  .div {}
 }
 
 mat-card {
-  width: 35% !important;
-  height: 75% !important;
   background-color: #fffefe;
-
-}
-
-mat-card-actions {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  mat-form-field{
+    min-width: 90%;
+  }
 }

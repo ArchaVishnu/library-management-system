@@ -11,5 +11,11 @@
   "shared.header.login": "Login",
   "shared.header.viewProfile": "View Profile",
   "shared.header.accountSettings": "Account Settings",
-  "shared.header.signOut": "Sign Out"
+  "shared.header.signOut": "Sign Out",
+  "login.heading.welcomeBack": "Welcome Back",
+  "login.form.email": "Email",
+  "login.form.emailPlaceholder": "abc@example.com",
+  "login.form.requiredError": "Required",
+  "login.form.password": "Password",
+  "login.form.passwordPlaceholder": "Enter your password"
 }
