@@ -18,14 +18,15 @@
     [class.desktop-nav]="!isMobile()"
     [aria-label]="'shared.header.navigation' | translate"
   >
-    <div class="nav-branding">
-      <mat-icon class="brand-icon" [innerText]="'local_library'"></mat-icon>
+    @if (!isMobile()) {
+      <div class="nav-branding">
+        <mat-icon class="brand-icon" [innerText]="'local_library'"></mat-icon>
 
-      <ng-container [ngTemplateOutlet]="desktopBrandingTpl"></ng-container>
-    </div>
-
+        <ng-container [ngTemplateOutlet]="desktopBrandingTpl"></ng-container>
+      </div>
+    }
     <div class="nav-button-list">
-      @for (item of visibleNavLinks(); track item.link) {
+      @for (item of visibleNavLinks(); track item.key) {
         <a
           mat-flat-button
           [routerLink]="item.link"
@@ -93,6 +94,7 @@
     </button>
 
     <div class="toolbar-title">
+      <!-- <mat-icon class="brand-icon" [innerText]="'local_library'"></mat-icon> -->
       <span
         class="title"
         [innerText]="'shared.header.libSystem' | translate"

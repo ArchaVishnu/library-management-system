@@ -52,10 +52,17 @@ export class HeaderComponent {
 
   readonly isLoggedIn = computed(() => this.userService.isLoggedIn());
   readonly loggedInUser = computed(() => this.userService.userSignal());
-  readonly isAdmin = computed(() => this.userService.isAdmin())
+  // readonly isAdmin = computed(() => this.userService.isAdmin())
+   readonly isAdmin = computed(() => {
+    const role = this.loggedInUser()?.role?.toLowerCase();
+
+    return role === 'admin' || role === 'librarian';
+  });
+
 
   readonly isMobile = signal<boolean>(false);
   readonly sidenavOpened = signal<boolean>(true);
+  
 
   readonly navItems: NavItem[] = [
     {
