@@ -7,6 +7,7 @@ export interface User {
   email: string;
   role: UserRole;
   name: string;
+  libararyClassId: string;
 }
 
 export interface UserData {
@@ -14,12 +15,12 @@ export interface UserData {
   password: string;
   role: UserRole;
   userClass: UserClass;
+  libararyClassId: string;
 }
 export interface LoginDetails {
   email: string;
   password: string;
 }
-
 export interface LoginFormBuilder {
   email: FormControl<string | null>;
   password: FormControl<string | null>;

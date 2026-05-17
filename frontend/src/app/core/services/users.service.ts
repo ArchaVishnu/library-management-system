@@ -31,7 +31,7 @@ export class UsersService {
     return !this.isTokenExpired(token);
   });
 
-  public isAdmin = computed(() => this.userSignal()?.role === 'admin');
+  public isAdmin = computed(() => this.userSignal()!.role === 'admin');
   public getAuthHeaders(): HttpHeaders {
     const token = this.tokenSignal();
     let headers = new HttpHeaders().set('Content-Type', 'application/json');

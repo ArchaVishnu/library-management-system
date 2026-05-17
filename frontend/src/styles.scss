@@ -5,6 +5,8 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@use './styles/variables' as *;
+
 
 html {
   height: 100%;
@@ -16,6 +18,8 @@ html {
     typography: Roboto,
     density: 0,
   ));
+  overflow-y: scroll;
+
 }
 
 body {
@@ -36,3 +40,21 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

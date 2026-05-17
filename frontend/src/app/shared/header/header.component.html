@@ -1,77 +1,158 @@
-<mat-sidenav-container class="app-container">
-  <mat-sidenav mode="side" opened class="main-nav">
+@if (isMobile()) {
+  <ng-container [ngTemplateOutlet]="mobileToolbarTpl"></ng-container>
+}
+
+<mat-sidenav-container
+  class="app-container"
+  [class.mobile-layout]="isMobile()"
+  [class.desktop-layout]="!isMobile()"
+>
+  <mat-sidenav
+    #sidenav
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="sidenavOpened()"
+    (openedChange)="sidenavOpened.set($event)"
+    [autoFocus]="false"
+    class="main-nav"
+    [class.mobile-nav]="isMobile()"
+    [class.desktop-nav]="!isMobile()"
+    [aria-label]="'shared.header.navigation' | translate"
+  >
     <div class="nav-branding">
-      <mat-icon>Local Library</mat-icon>
-      <div class="brand-text">
-        <span class="title">Library System</span>
-        <span class="subtitle">Management Portal</span>
-      </div>
+      <mat-icon class="brand-icon" [innerText]="'local_library'"></mat-icon>
+
+      <ng-container [ngTemplateOutlet]="desktopBrandingTpl"></ng-container>
     </div>
 
     <div class="nav-button-list">
-      @for (item of navItems; track $index) {
+      @for (item of visibleNavLinks(); track item.link) {
         <a
           mat-flat-button
           [routerLink]="item.link"
           routerLinkActive="active-btn"
           class="sidebar-btn"
+          (click)="onNavItemClick()"
+          [attr.aria-label]="item.label | translate"
         >
-          <mat-icon>{{ item.icon }}</mat-icon>
-          {{ item.label | translate }}
+          <mat-icon [innerText]="item.icon"></mat-icon>
+          <span class="btn-label" [innerText]="item.label | translate"></span>
         </a>
       }
     </div>
+
     <div class="nav-auth-section">
       @if (isLoggedIn()) {
-        <div class="profile-container" [matMenuTriggerFor]="profileMenu">
+        <div
+          class="profile-container"
+          [matMenuTriggerFor]="profileMenu"
+          [aria-label]="'shared.header.userMenu' | translate"
+        >
           <div class="user-avatar">
-            <mat-icon>account_circle</mat-icon>
+            <mat-icon [innerText]="'account_circle'"></mat-icon>
           </div>
-          <div class="user-info">
-            <span class="user-name" [innerText]="loggedInUser()!.name"></span>
-            @if (loggedInUser()!.role === "admin") {
-              <span
-                class="user-role"
-                [innerText]="'core.role.admin' | translate"
-              ></span>
-            } @else {
-              <span
-                class="user-role"
-                [innerText]="'core.role.user' | translate"
-              ></span>
-            }
-          </div>
+
+          <!-- @if (!isMobile()) { -->
+          <ng-container [ngTemplateOutlet]="desktopUserInfoTpl"></ng-container>
+          <!-- } -->
         </div>
       } @else {
-        <div class="profile-container" (click)="login()">
+        <div
+          class="profile-container login-btn"
+          (click)="login()"
+          aria-label="Login"
+        >
           <div class="user-avatar">
-            <mat-icon>account_circle</mat-icon>
+            <mat-icon [innerText]="'login'"></mat-icon>
           </div>
-          <div class="user-info">
-            <span [innerText]="'shared.header.login' | translate"></span>
-          </div>
+
+          @if (!isMobile()) {
+            <ng-container
+              [ngTemplateOutlet]="desktopLoginLabelTpl"
+            ></ng-container>
+          }
         </div>
       }
     </div>
-
-    <mat-menu #profileMenu="matMenu" xPosition="after">
-      <button mat-menu-item>
-        <mat-icon>person</mat-icon>
-        <span [innerText]="'shared.header.viewProfile' | translate"></span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>settings</mat-icon>
-        <span [innerText]="'shared.header.accountSettings' | translate"></span>
-      </button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item (click)="logout()" class="logout-item">
-        <mat-icon>logout</mat-icon>
-        <span [innerText]="'shared.header.signOut' | translate"></span>
-      </button>
-    </mat-menu>
   </mat-sidenav>
 
   <mat-sidenav-content class="content-area">
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<ng-template #mobileToolbarTpl>
+  <mat-toolbar class="mobile-toolbar">
+    <button
+      mat-icon-button
+      type="button"
+      (click)="toggleSidenav()"
+      class="hamburger-btn"
+      [aria-label]="'shared.header.openNav' | translate"
+    >
+      <mat-icon [innerText]="'menu'"></mat-icon>
+    </button>
+
+    <div class="toolbar-title">
+      <span
+        class="title"
+        [innerText]="'shared.header.libSystem' | translate"
+      ></span>
+    </div>
+
+    <div class="toolbar-spacer"></div>
+  </mat-toolbar>
+</ng-template>
+
+<ng-template #desktopBrandingTpl>
+  <div class="brand-text">
+    <span
+      class="title"
+      [innerText]="'shared.header.libSystem' | translate"
+    ></span>
+    <span
+      class="subtitle"
+      [innerText]="'shared.header.mngmtPortal' | translate"
+    ></span>
+  </div>
+</ng-template>
+
+<ng-template #desktopUserInfoTpl>
+  <div class="user-info">
+    <span class="user-name" [innerText]="loggedInUser()!.name"></span>
+    <span
+      class="user-role"
+      [innerText]="
+        (loggedInUser()?.role === 'admin'
+          ? 'core.role.admin'
+          : 'core.role.user'
+        ) | translate
+      "
+    ></span>
+  </div>
+</ng-template>
+
+<ng-template #desktopLoginLabelTpl>
+  <span
+    class="btn-label"
+    [innerText]="'shared.header.login' | translate"
+  ></span>
+</ng-template>
+
+<mat-menu #profileMenu="matMenu" xPosition="after" class="profile-menu">
+  <button mat-menu-item type="button" class="menu-item">
+    <mat-icon [innerText]="'person'"></mat-icon>
+    <span [innerText]="'shared.header.viewProfile' | translate"></span>
+  </button>
+
+  <button mat-menu-item type="button" class="menu-item">
+    <mat-icon [innerText]="'settings'"></mat-icon>
+    <span [innerText]="'shared.header.accountSettings' | translate"></span>
+  </button>
+
+  <mat-divider></mat-divider>
+
+  <button mat-menu-item type="button" (click)="onLogout()" class="logout-item">
+    <mat-icon [innerText]="'logout'"></mat-icon>
+    <span [innerText]="'shared.header.signOut' | translate"></span>
+  </button>
+</mat-menu>

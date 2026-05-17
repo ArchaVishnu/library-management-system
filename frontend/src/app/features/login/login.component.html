@@ -3,7 +3,7 @@
     <div [innerText]="'login.heading.welcomeBack' | translate"></div>
     <h1 [innerText]="'shared.header.login' | translate"></h1>
     <form method="get" [formGroup]="loginForm">
-      <mat-form-field appearance="fill" floatLabel="always">
+      <mat-form-field appearance="fill">
         <mat-label [innerText]="'login.form.email' | translate"></mat-label>
         <input
           type="email"
@@ -17,7 +17,7 @@
           ></mat-error>
         }
       </mat-form-field>
-      <mat-form-field appearance="fill" floatLabel="always">
+      <mat-form-field appearance="fill">
         <mat-label [innerText]="'login.form.password' | translate"></mat-label>
         <input
           [type]="hide() ? 'password' : 'text'"
@@ -48,8 +48,8 @@
       matButton="filled"
       color="primary"
       type="submit"
-      [disabled]="loginForm.invalid"
       [innerText]="'shared.header.login' | translate"
+      (click)="logIn()"
     ></button>
   </mat-card-content>
   <!-- <mat-card-actions>

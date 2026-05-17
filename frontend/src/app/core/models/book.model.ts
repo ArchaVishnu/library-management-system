@@ -1,7 +1,9 @@
 export type BookStatus = 'Available' | 'Issued';
+export type ReturnStatus = 'Active' | 'Overdue' | 'Returned';
 
 export interface Book {
   id: string;
+  bookId: string;
   title: string;
   author: string;
   isbn: string;
@@ -20,7 +22,9 @@ export interface BorrowHistory {
 export interface Reservation {
   id?: number;
   bookId: string;
+  userId: string;
   queueNumber: number;
+  reservedDate: string;
 }
 
 export interface BookQueryOptions {
@@ -38,19 +42,29 @@ export interface AddBooksModel {
   title: string;
   author: string;
   isbn: string;
+  status: string;
+  genre: string[],
+  publishedYear: number;
 }
 
 export interface BorrowBookRequest {
   userId: string;
   bookId: string;
+  borrowDate: string;
+  returnDate: string | null;
+  dueDate: string;
+  status: ReturnStatus;
 }
 
 export interface ReturnBookRequest {
-  historyId: number;
+  // historyId: number;
+  userId: string;
   bookId: string;
 }
 
 export interface ReserveBookRequest {
   bookId: string;
   queueNumber: number;
+  userId: string;
+  reservedDate: string;
 }

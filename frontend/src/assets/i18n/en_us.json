@@ -2,7 +2,7 @@
   "core.role.admin": "Admin",
   "core.role.user": "User",
   "shared.header.dashboard": "Dashboard",
-  "shared.header.bookCatalog": "Book Catalog",
+  "shared.header.bookCatalog": "Books Catalog",
   "shared.borrow.members": "Members",
   "shared.header.borrowing": "Borrowing",
   "shared.notFound.heading": "Oops!! Page Not Found!!",
@@ -17,5 +17,10 @@
   "login.form.emailPlaceholder": "abc@example.com",
   "login.form.requiredError": "Required",
   "login.form.password": "Password",
-  "login.form.passwordPlaceholder": "Enter your password"
+  "login.form.passwordPlaceholder": "Enter your password",
+  "shared.header.userMenu": "User Menu",
+  "shared.header.navigation": "Navigation",
+  "shared.header.openNav": "Open Navigation",
+  "shared.header.libSystem": "Library System",
+  "shared.header.mngmtPortal": "Management Portal"
 }
